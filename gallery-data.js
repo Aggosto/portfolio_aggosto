@@ -28,5 +28,13 @@ window.GALLERY_DATA = {
       caption: 'Serie / GTA San Andreas',
       images: []
     }
+  ],
+  real: [
+    {
+      id: 'street',
+      title: 'Street Photography',
+      caption: 'Fotografía urbana',
+      images: []
+    }
   ]
 };

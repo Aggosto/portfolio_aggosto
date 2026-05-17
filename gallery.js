@@ -14,45 +14,72 @@ document.addEventListener('DOMContentLoaded', function(){
 
   const buildGalleryFromData = () => {
     const data = window.GALLERY_DATA;
-    if(!data?.digital?.length) return;
-    const container = document.querySelector('#digital .projects');
-    if(!container) return;
+    if(!data) return;
 
-    const projectsHtml = data.digital.map(project => {
-      const images = project.images
-        .map(image => {
-          const src = buildCloudinaryUrl(image);
-          if(!src) return '';
-          const alt = image.alt ? image.alt.replace(/"/g, '&quot;') : '';
-          return `<div class="carousel-item"><img src="${src}" alt="${alt}"></div>`;
+    // Construir secciones (digital y real)
+    ['digital', 'real'].forEach(sectionKey => {
+      const projects = data[sectionKey] || [];
+      const section = document.querySelector(`#${sectionKey}`);
+      if(!section) return;
+
+      const container = section.querySelector('.projects');
+      if(!container) return;
+
+      const projectsHtml = projects
+        .map(project => {
+          if(!project.images || project.images.length === 0) {
+            // Proyecto sin imágenes
+            return `
+              <div class="project" data-id="${project.id}">
+                <div class="project-header" style="opacity: 0.5;">
+                  <div class="project-title">${project.title}</div>
+                  <div class="project-actions">
+                    <div class="caption">${project.caption || ''}</div>
+                  </div>
+                </div>
+                <div style="padding: 20px 0; color: #999; font-size: 12px;">
+                  Próximamente...
+                </div>
+              </div>
+            `;
+          }
+
+          const images = project.images
+            .map(image => {
+              const src = buildCloudinaryUrl(image);
+              if(!src) return '';
+              const alt = image.alt ? image.alt.replace(/"/g, '&quot;') : '';
+              return `<div class="carousel-item"><img src="${src}" alt="${alt}"></div>`;
+            })
+            .join('');
+
+          return `
+            <div class="project" data-id="${project.id}">
+              <button class="project-header" aria-expanded="false">
+                <div class="project-title">${project.title}</div>
+                <div class="project-actions">
+                  <div class="caption">${project.caption || ''}</div>
+                </div>
+              </button>
+              <div class="project-body" aria-hidden="true">
+                <div class="carousel">
+                  <button class="nav-btn prev" aria-label="Anterior">‹</button>
+                  <div class="carousel-track">
+                    ${images}
+                  </div>
+                  <button class="nav-btn next" aria-label="Siguiente">›</button>
+                </div>
+                <div class="project-footer">
+                  <a class="view-all" href="#">Ver todas</a>
+                </div>
+              </div>
+            </div>
+          `;
         })
         .join('');
 
-      return `
-        <div class="project" data-id="${project.id || project.title.toLowerCase().replace(/\s+/g,'-')}">
-          <button class="project-header" aria-expanded="false">
-            <div class="project-title">${project.title}</div>
-            <div class="project-actions">
-              <div class="caption">${project.caption || ''}</div>
-            </div>
-          </button>
-          <div class="project-body" aria-hidden="true">
-            <div class="carousel">
-              <button class="nav-btn prev" aria-label="Anterior">‹</button>
-              <div class="carousel-track">
-                ${images}
-              </div>
-              <button class="nav-btn next" aria-label="Siguiente">›</button>
-            </div>
-            <div class="project-footer">
-              <a class="view-all" href="${project.url || '#'}">Ver todas</a>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    container.innerHTML = projectsHtml;
+      container.innerHTML = projectsHtml;
+    });
   };
 
   buildGalleryFromData();
@@ -67,6 +94,28 @@ document.addEventListener('DOMContentLoaded', function(){
       img.classList.add('missing');
     });
   });
+
+  // Toggle section open/close (DIGITAL, REAL)
+  document.querySelectorAll('.section-header').forEach(header=>{
+    header.addEventListener('click', ()=>{
+      const section = header.parentElement;
+      const body = section.querySelector('.section-body');
+      const icon = header.querySelector('.toggle-icon');
+      const opened = section.classList.contains('open');
+      section.classList.toggle('open', !opened);
+      header.setAttribute('aria-expanded', String(!opened));
+      body.setAttribute('aria-hidden', String(opened));
+      if(icon) icon.textContent = opened ? '+' : '−';
+      
+      // Scroll hacia la sección cuando se abre
+      if(!opened){
+        setTimeout(()=>{
+          section.scrollIntoView({behavior:'smooth', block:'start'});
+        }, 100);
+      }
+    });
+  });
+
   // Toggle project open/close
   document.querySelectorAll('.project-header').forEach(header=>{
     header.addEventListener('click', ()=>{

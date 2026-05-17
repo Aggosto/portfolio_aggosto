@@ -67,11 +67,53 @@ nav a:hover{
     padding:100px 60px;
 }
 
+.section-header{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid #efefef;
+    padding:0 0 18px 0;
+    margin-bottom:24px;
+    cursor:pointer;
+    font-size:12px;
+    letter-spacing:0.25em;
+    transition:opacity 200ms ease;
+}
+
+.section-header:hover{
+    opacity:0.7;
+}
+
+.toggle-icon{
+    font-size:16px;
+    font-weight:300;
+    transition:transform 200ms ease;
+}
+
+.section.open .toggle-icon{
+    transform:rotate(45deg);
+}
+
 .section-title{
     font-size:12px;
-    margin-bottom:60px;
     letter-spacing:0.25em;
     color:#666;
+    margin:0;
+}
+
+.section-body{
+    overflow:hidden;
+    max-height:0;
+    opacity:0;
+    transition:max-height 420ms cubic-bezier(.22,.9,.18,1), opacity 300ms ease;
+}
+
+.section.open .section-body{
+    max-height:2000px;
+    opacity:1;
 }
 
 /* =========================
@@ -119,19 +161,17 @@ nav a:hover{
 .projects{
     display:flex;
     flex-direction:column;
-    gap:40px;
+    gap:24px;
 }
 
 .project{
-    border-top:1px solid #efefef;
-    padding-top:36px;
     transition:background 280ms ease, padding 280ms ease;
+    padding-top:12px;
 }
 
 .project.open{
     background:rgba(0,0,0,0.02);
-    padding:20px 24px;
-    margin:0 -24px;
+    padding:16px 18px;
     border-radius:6px;
 }
 

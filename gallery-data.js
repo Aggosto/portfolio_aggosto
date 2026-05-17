@@ -21,6 +21,12 @@ window.GALLERY_DATA = {
         { publicId: 'gtaiv_planopinturahelicoptero_j43fcp', alt: 'GTA IV - plano pintura helicóptero' },
         { publicId: 'gtaiv_america_flag_ppzld0', alt: 'GTA IV - bandera' }
       ]
+    },
+    {
+      id: 'gtasan',
+      title: 'GTA: San Andreas',
+      caption: 'Serie / GTA San Andreas',
+      images: []
     }
   ]
 };

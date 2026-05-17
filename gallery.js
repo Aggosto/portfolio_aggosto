@@ -79,6 +79,11 @@ document.addEventListener('DOMContentLoaded', function(){
       if(!opened){
         const track = project.querySelector('.carousel-track');
         track && track.scrollTo({left:0, behavior:'smooth'});
+        
+        // Scroll hacia el proyecto cuando se abre
+        setTimeout(()=>{
+          project.scrollIntoView({behavior:'smooth', block:'start'});
+        }, 100);
       }
     });
   });

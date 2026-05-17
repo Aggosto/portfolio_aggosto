@@ -125,6 +125,14 @@ nav a:hover{
 .project{
     border-top:1px solid #efefef;
     padding-top:36px;
+    transition:background 280ms ease, padding 280ms ease;
+}
+
+.project.open{
+    background:rgba(0,0,0,0.02);
+    padding:20px 24px;
+    margin:0 -24px;
+    border-radius:6px;
 }
 
 .project-header{
@@ -136,23 +144,31 @@ nav a:hover{
     border:none;
     padding:0;
     cursor:pointer;
+    transition:opacity 200ms ease;
+}
+
+.project-header:hover{
+    opacity:0.7;
 }
 
 .project-title{
     font-size:13px;
     letter-spacing:0.25em;
+    font-weight:500;
 }
 
 .project-body{
     overflow:hidden;
     max-height:0;
-    transition:max-height 420ms cubic-bezier(.22,.9,.18,1), opacity 300ms ease;
+    transition:max-height 420ms cubic-bezier(.22,.9,.18,1), opacity 300ms ease, margin 300ms ease;
     opacity:0;
+    margin-top:0;
 }
 
 .project.open .project-body{
-    max-height:600px;
+    max-height:800px;
     opacity:1;
+    margin-top:20px;
 }
 
 .carousel{

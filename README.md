@@ -29,6 +29,14 @@ python -m http.server 8000
 
 2. Abre tu navegador en http://localhost:8000
 
+Configurar Cloudinary:
+
+1. En tu cuenta de Cloudinary copia tu `cloud name` desde el panel.
+2. Abre `gallery-data.js` y pega tu nombre en `cloudName`.
+3. Sube las imágenes a Cloudinary en una carpeta (por ejemplo `gtaiv`).
+4. Guarda en `gallery-data.js` los `publicId` de cada imagen, sin extensión.
+5. Actualiza el campo `caption` si quieres textos diferentes.
+
 Notas y recomendaciones:
 - Asegúrate de colocar las imágenes en `imagenes/digital` y `imagenes/real` con los nombres que usa `index.html`.
 - Si prefieres que las secciones se generen automáticamente desde un JSON, puedo añadir un `data/projects.json` y cargarlo dinámicamente.

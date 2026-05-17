@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', function(){
     const cloudName = window.GALLERY_DATA?.cloudName;
     if(!cloudName || !item.publicId) return '';
     const format = item.format || 'webp';
-    const transformation = item.transformation || 'f_auto,q_auto,w_900';
-    return `https://res.cloudinary.com/${cloudName}/image/upload/${transformation}/${item.publicId}.${format}`;
+    const transformation = item.transformation || '';
+    const path = transformation ? `${transformation}/` : '';
+    return `https://res.cloudinary.com/${cloudName}/image/upload/${path}${item.publicId}.${format}`;
   };
 
   const buildGalleryFromData = () => {

@@ -40,7 +40,10 @@
 <section class="section" id="digital">
 
     <button class="section-header" aria-expanded="false">
-        <div class="section-title">DIGITAL</div>
+        <div class="section-header-label">
+            <span class="section-index">01</span>
+            <div class="section-title">DIGITAL</div>
+        </div>
         <span class="toggle-icon">+</span>
     </button>
 
@@ -57,7 +60,10 @@
 <section class="section" id="real">
 
     <button class="section-header" aria-expanded="false">
-        <div class="section-title">REAL</div>
+        <div class="section-header-label">
+            <span class="section-index">02</span>
+            <div class="section-title">REAL</div>
+        </div>
         <span class="toggle-icon">+</span>
     </button>
 
@@ -74,64 +80,51 @@
 
 <section class="section" id="videos">
 
-    <div class="section-title">
-        VIDEOS
-    </div>
+    <button class="section-header" aria-expanded="false">
+        <div class="section-header-label">
+            <span class="section-index">03</span>
+            <div class="section-title">VIDEOS</div>
+        </div>
+        <span class="toggle-icon">+</span>
+    </button>
 
-    <div class="video-grid">
+    <div class="section-body" aria-hidden="true">
+        <div class="video-grid">
 
-        <div class="video-card">
+            <article class="video-card">
 
-            <div class="video-thumb">
-
-                <iframe
-                    src="https://www.youtube.com/embed/VIDEO_ID_1"
-                    allowfullscreen>
-                </iframe>
-
-            </div>
-
-            <div class="video-info">
-
-                <div class="video-title">
-                    GTA IV / CINEMATIC
+                <div class="video-thumb">
+                    <iframe
+                        src="https://www.youtube.com/embed/VIDEO_ID_1"
+                        allowfullscreen>
+                    </iframe>
                 </div>
 
-                <div class="video-description">
-                    Experimental virtual cinematography and environmental storytelling.
+                <div class="video-info">
+                    <div class="video-title">01 / GTA IV CINEMATIC</div>
+                    <div class="video-description">Experimental virtual cinematography and environmental storytelling.</div>
                 </div>
 
-            </div>
+            </article>
+
+            <article class="video-card">
+
+                <div class="video-thumb">
+                    <iframe
+                        src="https://www.youtube.com/embed/VIDEO_ID_2"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="video-info">
+                    <div class="video-title">02 / STREET DOCUMENTARY</div>
+                    <div class="video-description">Urban atmosphere captured through handheld photography and motion.</div>
+                </div>
+
+            </article>
 
         </div>
-
-        <div class="video-card">
-
-            <div class="video-thumb">
-
-                <iframe
-                    src="https://www.youtube.com/embed/VIDEO_ID_2"
-                    allowfullscreen>
-                </iframe>
-
-            </div>
-
-            <div class="video-info">
-
-                <div class="video-title">
-                    STREET DOCUMENTARY
-                </div>
-
-                <div class="video-description">
-                    Urban atmosphere captured through handheld photography and motion.
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
-
 </section>
 
 <footer>
@@ -140,9 +133,19 @@
 
 <div class="lightbox-overlay" id="lightbox" aria-hidden="true">
     <button class="lightbox-close" type="button" aria-label="Cerrar imagen">×</button>
+    <button class="lightbox-prev" type="button" aria-label="Anterior">‹</button>
+    <button class="lightbox-next" type="button" aria-label="Siguiente">›</button>
     <div class="lightbox-content">
-        <img src="" alt="">
-        <div class="lightbox-caption"></div>
+        <div class="lightbox-img-wrap">
+            <img src="" alt="">
+        </div>
+        <div class="lightbox-info">
+            <div class="lightbox-meta-row">
+                <span class="lightbox-title"></span>
+                <span class="lightbox-counter"></span>
+            </div>
+            <div class="lightbox-detail"></div>
+        </div>
     </div>
 </div>
 
